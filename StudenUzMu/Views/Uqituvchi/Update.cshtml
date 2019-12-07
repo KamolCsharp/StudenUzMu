@@ -1,0 +1,66 @@
+﻿@model StudenUzMu.Models.Uqituvchi
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1 class="text-center">Uqituvchi Malumotlarini ozgartirish</h1>
+<hr />
+<div class="container">
+    <form asp-action="Update" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Familiyasi" class="control-label"></label>
+                <input asp-for="Familiyasi" class="form-control" />
+                <span asp-validation-for="Familiyasi" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Ismi" class="control-label"></label>
+                <input asp-for="Ismi" class="form-control" />
+                <span asp-validation-for="Ismi" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Sharifi" class="control-label"></label>
+                <input asp-for="Sharifi" class="form-control" />
+                <span asp-validation-for="Sharifi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Pasport" class="control-label"></label>
+                <input asp-for="Pasport" class="form-control" />
+                <span asp-validation-for="Pasport" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Parol" class="control-label"></label>
+                <input asp-for="Parol" class="form-control" />
+                <span asp-validation-for="Parol" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Rasm" class="control-label"></label>
+                <input type="file" name="file" class="form-control" />
+                <span asp-validation-for="Rasm" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <br />
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

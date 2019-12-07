@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h1 class="text-center">O'zbekiston Milliy Universteti</h1>
+    <br />
+    @if (ViewBag.Error) {
+    <div class="alert alert-danger">
+        <strong>Xatolik yuz berdi</strong> Hurmatli foydalanuvchi Login yoki Parol xato!!!
+    </div>
+    }
+    <br />
+    <br />
+    <form method="post">
+        <div class="form-group">
+            <b>Login:</b>
+            <input type="text" class="form-control" placeholder="Login" name="login">
+            <br />
+            <b>Password:</b>
+            <input type="password" class="form-control" placeholder="Password" name="parol">
+            <br />
+            <input type="submit" value="Kirish" class="btn btn-success" asp-controller="Home" asp-action="LoginIndex" />
+        </div>
+    </form>
+</div>

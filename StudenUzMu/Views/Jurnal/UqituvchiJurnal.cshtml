@@ -1,0 +1,270 @@
+﻿@model IEnumerable<Jurnal>
+    <div class="container">
+        <div class="media">
+            <div class="media-left">
+                <img asp-append-version="true" src="@ViewBag.Rasm" class="media-object" style="width:100px">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">@ViewBag.Fam &emsp;@ViewBag.Ism &emsp;@ViewBag.Sharf</h4>
+                <p>Tel:+998939993674</p>
+
+            </div>
+        </div>
+    <hr />
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Baxolash</button>
+    <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo2">Qidirish</button>
+    <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo3">Imtixon vaqti</button>
+    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo4">Guruh baxolash</button>
+    </div>
+    <form asp-controller="Jurnal" asp-action="UpdateAll" method="get">
+        <table id="demo4" class="collapse table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <td>Guruh nomeri</td>
+                    <td>Semister</td>
+                    <td>Kurs</td>
+                    <td>Fan</td>
+
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" min="0" max="500" class="form-control" placeholder="Guruh nomeri" name="gn" /></td>
+                    <td><input type="number" min="0" max="8" class="form-control" placeholder="Semister" name="sem" /></td>
+                    <td><input type="number" min="0" max="4" class="form-control" placeholder="Kurs" name="kurs" /></td>
+                    <td>
+                        @Html.DropDownList("fanid",
+                       new SelectList(ViewBag.Fan, "Id", "Nomi",null),"  ",new { @class="form-control"})
+                    </td>
+
+                    <td><input type="submit" class="btn btn-success" value="Baxolash" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <form asp-controller="Jurnal" asp-action="InsertUquvchi" method="get">
+        <table id="demo" class="collapse table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Joriy</td>
+                    <td>Or_1</td>
+                    <td>Or_2</td>
+                    <td>Yak</td>
+                    <td>Jami</td>
+                    <td>Ret</td>
+                    <td>Baxo</td>
+                    <td>Sana</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input min="0" type="number" class="form-control" placeholder="Id" name="jId" />
+                    </td>
+                    <td><input type="text" class="form-control" placeholder="Joriy" name="joriy" /></td>
+                    <td><input type="text" class="form-control" placeholder="Oraliq 1" name="or1" /></td>
+                    <td><input type="text" class="form-control" placeholder="Oraliq 2" name="or2" /></td>
+                    <td><input type="text" class="form-control" placeholder="Yakuniy" name="yak" /></td>
+                    <td><input type="text" class="form-control" placeholder="Jami" name="jam" /></td>
+                    <td><input type="text" class="form-control" placeholder="Reting" name="reti" /></td>
+                    <td><input type="text" class="form-control" placeholder="Baxo" name="baxo" /></td>
+                    <td><input type="date" class="form-control" placeholder="Sana" name="sana" /></td>
+                </tr>
+                <tr><td><input type="submit" class="btn btn-success" value="Baxo" /></td></tr>
+            </tbody>
+
+        </table>
+    </form>
+    <form asp-controller="Jurnal" asp-action="SelectUq" method="get">
+        <table id="demo2" class="collapse table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <td>Familiya</td>
+                    <td>Ismi</td>
+                    <td>Sharifi</td>
+                    <td>Semester</td>
+                    <td>Fanlar</td>
+                    <td>G_N</td>
+                    <td>KursiNN</td>
+                    <td>Fakultet</td>
+                    <td>Yonalish</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Familiyasi" name="famu" />
+                    </td>
+                    <td><input type="text" class="form-control" placeholder="Ismi" name="ismu" /></td>
+                    <td><input type="text" class="form-control" placeholder="Sharfi" name="sharfu" /></td>
+                    <td><input min="0" max="8" type="number" class="form-control" name="sem" placeholder="Semester" /></td>
+                    <td>
+                        @Html.DropDownList("fanid",
+                       new SelectList(ViewBag.Fan,"Id","Nomi",null),"  ",new { @class="form-control"})
+                    </td>
+                    <td><input min="0" type="number" class="form-control" name="gn" placeholder="Guruh nomeri" /></td>
+                    <td><input min="0" max="4" type="number" name="kurs" class="form-control" placeholder="Kursi" /></td>
+                    <td>
+                        @Html.DropDownList("fakid",
+                      new SelectList(ViewBag.Fak,"Id","Nomi",null),"  ",new { @class="form-control"})
+                    </td>
+                    <td>
+                        @Html.DropDownList("yonid",
+                      new SelectList(ViewBag.Yon,"Id","Nomi",null),"   ",new { @class="form-control"})
+                    </td>
+                </tr>
+                <tr><td><input type="submit" class="btn btn-secondary" value="Qidirish" /></td></tr>
+            </tbody>
+        </table>
+    </form>
+    <table id="demo3" class="collapse table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>Fan</td>
+                <td colspan="2">Joriy</td>
+                <td colspan="2">Oraliq1</td>
+                <td colspan="2">Oraliq2</td>
+                <td colspan="2">Yakuniy</td>
+                <td>Sem</td>
+                <td>Kurs</td>
+                <td>G_N</td>
+                <td>Fakultet</td>
+                <td>Yonalish</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<StudenUzMu.Models.JurnalVaqti>)ViewBag.JurnalVaqti)
+            {
+                <tr>
+                    <td>@item.Fanlar.Nomi</td>
+                    @if (item.Joriy_B < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Joriy_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Joriy_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Joriy_T < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Joriy_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Joriy_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Oraliq_1_B < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Oraliq_1_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Oraliq_1_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Oraliq_1_T < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Oraliq_1_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Oraliq_1_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Oraliq_2_B < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Oraliq_2_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Oraliq_2_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Oraliq_2_T < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Oraliq_2_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Oraliq_2_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Yakuniy_B < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Yakuniy_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Yakuniy_B.ToString("dd-MM-yyyy")</td>
+                    }
+                    @if (item.Yakuniy_T < DateTime.Now)
+                    {
+                        <td style="background-color:#f28383">@item.Yakuniy_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68c85d">@item.Yakuniy_T.ToString("dd-MM-yyyy")</td>
+                    }
+                    <td>@item.Semister</td>
+                    <td>@item.Kurs</td>
+                    <td>@item.Guruh_nomer</td>
+                    <td>@item.Fakultet.Nomi</td>
+                    <td>@item.Yonalish.Nomi</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Uquvchi FIO</td>
+                <td>Sem</td>
+                <td>Fanlar </td>
+                <td>Joriy</td>
+                <td>Or_1</td>
+                <td>Or_2</td>
+                <td>Yak</td>
+                <td>Jami</td>
+                <td>Ret</td>
+                <td>Baxo</td>
+                <td>Sana</td>
+                <td>G_N</td>
+                <td>Kursi</td>
+                <td>Fakultet</td>
+                <td>Yonalish</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Jurnal jurnal in Model)
+            {
+                <tr>
+                    <td>@jurnal.Id</td>
+                    <td>@jurnal.Uquvchi.Familiyasi @jurnal.Uquvchi.Ismi</td>
+                    <td>@jurnal.Semister</td>
+                    <td>@jurnal.Fanlar.Nomi</td>
+                    <td>@jurnal.Joriy</td>
+                    <td>@jurnal.Oraliq_1</td>
+                    <td>@jurnal.Oraliq_2</td>
+                    @if (jurnal.Joriy + jurnal.Oraliq_1 + jurnal.Oraliq_2 < 40)
+                    {
+                        <td style="background-color:#de3333">@jurnal.Yakuniy</td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#68ce61">@jurnal.Yakuniy</td>
+                    }
+                    <td>@jurnal.Jami</td>
+                    <td>@jurnal.Reting</td>
+                    <td>@jurnal.Baxo</td>
+                    <td>@jurnal.Sana.ToString("dd-MM-yyyy")</td>
+                    <td>@jurnal.Guruh_nomeri</td>
+                    <td>@jurnal.Kursi</td>
+                    <td>@jurnal.Uquvchi.Fakultet.Nomi</td>
+                    <td>@jurnal.Uquvchi.Yonalish.Nomi</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

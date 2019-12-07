@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Uqituvchi>
+<h1 class="text-center"> O'qituvchilar Ro'yxati</h1>
+<hr />
+
+<div class="container">
+    <a class="btn btn-success" style="margin:12px;" asp-controller="uqituvchi" asp-action="Create">Yangi Uqituvchi Qoshish</a>
+    <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo2">Qidirish</button>
+    <form asp-controller="Uqituvchi" asp-action="SelectUq" method="get">
+        <table id="demo2" class="collapse table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <td>Familiya</td>
+                    <td>Ismi</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Familiyasi" name="fam" />
+                    </td>
+                    <td><input type="text" class="form-control" placeholder="Ismi" name="ism" /></td>
+                </tr>
+                <tr><td><input type="submit" class="btn btn-secondary" value="Qidirish" /></td></tr>
+            </tbody>
+        </table>
+    </form>
+
+    @{
+        int i = 0;
+    }
+
+    <div class="row">
+        @foreach (var uqituvchi in Model)
+        {
+            if (i == 0)
+            {
+                <div class="col-sm-4">
+                    <div class="card" style="width:400px">
+                        <img class="card-img-top" src="@uqituvchi.Rasm" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title">@uqituvchi.Familiyasi @uqituvchi.Ismi</h4>
+                            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                            <a class="btn btn-primary" asp-controller="Uqituvchi" asp-action="About" asp-route-id="@uqituvchi.Id">About</a>
+                            <a class="btn btn-info" asp-area="" asp-controller="Uqituvchi" asp-action="Update" asp-route-id="@uqituvchi.Id">Edit</a>
+                            <a class="btn btn-danger" asp-area="" asp-controller="Uqituvchi" asp-action="Delete" asp-route-id="@uqituvchi.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                i = 1; continue;
+            }
+            if (i == 1)
+            {
+                <div class="col-sm-4">
+                    <div class="card" style="width:400px">
+                        <img class="card-img-top" src="@uqituvchi.Rasm" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title">@uqituvchi.Familiyasi @uqituvchi.Ismi</h4>
+                            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                            <a class="btn btn-primary" asp-controller="Uqituvchi" asp-action="About" asp-route-id="@uqituvchi.Id">About</a>
+                            <a class="btn btn-info" asp-area="" asp-controller="Uqituvchi" asp-action="Update" asp-route-id="@uqituvchi.Id">Edit</a>
+                            <a class="btn btn-danger" asp-area="" asp-controller="Uqituvchi" asp-action="Delete" asp-route-id="@uqituvchi.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                i = 2; continue;
+            }
+            if (i == 2)
+            {
+                <div class="col-sm-4">
+                    <div class="card" style="width:400px">
+                        <img class="card-img-top" src="@uqituvchi.Rasm" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title">@uqituvchi.Familiyasi @uqituvchi.Ismi</h4>
+                            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                            <a class="btn btn-primary" asp-controller="Uqituvchi" asp-action="About" asp-route-id="@uqituvchi.Id">About</a>
+                            <a class="btn btn-info" asp-area="" asp-controller="Uqituvchi" asp-action="Update" asp-route-id="@uqituvchi.Id">Edit</a>
+                            <a class="btn btn-danger" asp-area="" asp-controller="Uqituvchi" asp-action="Delete" asp-route-id="@uqituvchi.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                i = 0; continue;
+            }
+        }
+    </div>
+</div>
+<form>
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        @{
+            var totalPage = ViewBag.count % 12 == 0 ? ViewBag.count / 12 : ViewBag.count / 12 + 1;
+        }
+        @for (int j = 1; j <= totalPage; j++)
+        {
+            <li class="page-item active"><a asp-controller="Uqituvchi" asp-action="Index" asp-route-page="@j">@j</a></li>
+        }
+        <li>
+            <a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+    </ul>
+</form>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Fanlar>
+    <h1 class="text-center">Universtetdagi Fanlar Ro'yxati</h1>
+    <hr />
+    <div class="container">
+        <a class="btn btn-success mt-5" style="margin:10px;" asp-controller="Fanlar" asp-action="Create">Yangi Fan Qoshish</a>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </td>
+                    <td>@Html.DisplayNameFor(model => model.Nomi)</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fak in Model)
+                {
+                    <tr>
+
+                        <td><b>@fak.Id</b></td>
+                        <td><b>@fak.Nomi</b></td>
+                        <td><a class="btn btn-info" asp-area="" asp-controller="Fanlar" asp-action="Update" asp-route-id="@fak.Id">Edit</a></td>
+                        <td><a class="btn btn-danger" asp-area="" asp-controller="Fanlar" asp-action="Delete" asp-route-id="@fak.Id">Delete</a></td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

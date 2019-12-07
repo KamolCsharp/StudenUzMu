@@ -1,0 +1,123 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Uquvchi>
+<h1 class="text-center">O'quvchilar to'g'risida malumotlar</h1>
+<hr />
+<a class="btn btn-success "  asp-controller="Uquvchi" asp-action="Create">Yangi Uquvchi Qoshish</a>
+<button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo2">Qidirish</button>
+<form asp-controller="Uquvchi" asp-action="SelectUq" method="get">
+    <table id="demo2" class="collapse table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>Familiya</td>
+                <td>Ismi</td>
+                <td>Sharifi</td>
+                <td>Pasport</td>
+                <td>Manzil</td>
+                <td>Email</td>
+                <td>Tel raqam</td>
+                <td>Tugulgan sana</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder="Familiyasi" name="fam" />
+                </td>
+                <td><input type="text" class="form-control" placeholder="Ismi" name="ism" /></td>
+                <td><input type="text" class="form-control" placeholder="Sharfi" name="sharf" /></td>
+                <td><input type="text" class="form-control" placeholder="Pasport" name="pasport" /></td>
+                <td><input type="text" class="form-control" placeholder="Manzil" name="manizl" /></td>
+                <td><input type="text" class="form-control" placeholder="Email" name="email" /></td>
+                <td><input type="text" class="form-control" placeholder="Tel raqam" name="tel_r" /></td>
+                <td><input type="date" class="form-control"  name="sana" /></td>
+               
+                
+              
+            </tr>
+            <tr><td><input type="submit" class="btn btn-secondary" value="Qidirish" /></td></tr>
+        </tbody>
+    </table>
+</form>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                FIO
+            </td>
+            <td>@Html.DisplayNameFor(model => model.First().Tugulgan_sana)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Pasport)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Manzil)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Email)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Parol)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Tel_raqami)</td>
+            <td>@Html.DisplayNameFor(model => model.First().Jinsi)</td>
+            <td>Fakultet</td>
+            <td>Yonalish</td>
+            <td>Nomer_Za</td>
+            <td>Oqishga_kirgan_yil</td>
+            <td>Status</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var uquvchi in Model)
+        {
+            <tr>
+
+                <td>@uquvchi.UquvchiId</td>
+                <td>
+                    @uquvchi.Familiyasi
+                    @uquvchi.Ismi
+                    @uquvchi.Sharifi
+                </td>
+                <td>@uquvchi.Tugulgan_sana.ToString("dd-MM-yyyy")</td>
+                <td>@uquvchi.Pasport</td>
+                <td>@uquvchi.Manzil</td>
+                <td>@uquvchi.Email</td>
+                <td>@uquvchi.Parol</td>
+                <td>@uquvchi.Tel_raqami</td>
+                @if (uquvchi.Jinsi)
+                {
+                    <td>Erkak</td>
+                }
+                else
+                {
+                    <td>Ayol</td>
+                }
+                    <td>@uquvchi.Fakultet.Nomi</td>
+                    <td>@uquvchi.Yonalish.Nomi</td>
+                <td>@uquvchi.Nomer_Za</td>
+                <td>@uquvchi.Oqishga_kirgan_yil.ToString("dd-MM-yyyy")</td>
+                <td>@uquvchi.Status</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="Uquvchi" asp-action="Update" asp-route-id="@uquvchi.UquvchiId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="Uquvchi" asp-action="Delete" asp-route-id="@uquvchi.UquvchiId">Delete</a></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form>
+    <nav aria-label="Page navigation">
+
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+            </li>
+            @{
+                var totalPage = ViewBag.count % 15 == 0 ? ViewBag.count / 15 : ViewBag.count / 15 + 1;
+            }
+            @for (int i = 1; i <= totalPage; i++)
+            {
+                <li class="page-item active"><a asp-controller="Uquvchi" asp-action="Index" asp-route-page="@i">@i</a></li>
+            }
+            <li>
+                <a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+            </li>
+        </ul>
+    </nav>
+</form>

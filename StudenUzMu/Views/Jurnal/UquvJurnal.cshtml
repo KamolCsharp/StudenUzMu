@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Jurnal>
+
+<div class="container">
+    <div class="media">
+        <div class="media-left">
+            <img asp-append-version="true" src="@ViewBag.Rasm" class="media-object" style="width:100px">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@ViewBag.Fam &emsp;@ViewBag.Ism &emsp;@ViewBag.Sharf</h4>
+            <p>Tel:+998939993674</p>
+
+        </div>
+    </div>
+    <hr>
+    <h4 class="text-center">Fanlardan olgan baxolari</h4>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+
+                <td>Fanlar  </td>
+                <td>Sem</td>
+                <td>Joriy</td>
+                <td>Oraliq 1</td>
+                <td>Oraliq 2</td>
+                <td>Yakuniy</td>
+                <td>Jami</td>
+                <td>Reting</td>
+                <td>Baxo</td>
+                <td>Sana</td>
+                <td>Uqituvchi FIO</td>
+                <td>G_N</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Jurnal jurnal in Model)
+            {
+                <tr>
+                    <td>@jurnal.Fanlar.Nomi</td>
+                    <td>@jurnal.Semister</td>
+                    <td>@jurnal.Joriy</td>
+                    <td>@jurnal.Oraliq_1</td>
+                    <td>@jurnal.Oraliq_2</td>
+                    <td>@jurnal.Yakuniy</td>
+                    <td>@jurnal.Jami</td>
+                    <td>@jurnal.Reting</td>
+                    <td>@jurnal.Baxo</td>
+                    <td>@jurnal.Sana.ToString("dd-MM-yyyy")</td>
+                    <td>@jurnal.Uqituvchi.Familiyasi @jurnal.Uqituvchi.Ismi</td>
+                    <td>@jurnal.Guruh_nomeri</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

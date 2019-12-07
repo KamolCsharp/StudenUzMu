@@ -1,0 +1,123 @@
+﻿@model StudenUzMu.ViewModel.UquvchiViewModel
+
+<h1 class="text-center">Yangi Uquvchi Qoshish</h1>
+<hr />
+<div class="container">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Familiyasi" class="control-label"></label>
+                <input asp-for="Uquvchi.Familiyasi" class="form-control" placeholder="Familiyasi" />
+                <span asp-validation-for="Uquvchi.Familiyasi" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Ismi" class="control-label"></label>
+                <input asp-for="Uquvchi.Ismi" class="form-control" placeholder="Ism" />
+                <span asp-validation-for="Uquvchi.Ismi" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Sharifi" class="control-label"></label>
+                <input asp-for="Uquvchi.Sharifi" class="form-control" placeholder="Sharifi" />
+                <span asp-validation-for="Uquvchi.Sharifi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Pasport" class="control-label"></label>
+                <input asp-for="Uquvchi.Pasport" class="form-control" placeholder="Pasport" />
+                <span asp-validation-for="Uquvchi.Pasport" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Email" class="control-label"></label>
+                <input asp-for="Uquvchi.Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Uquvchi.Email" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Tugulgan_sana" class="control-label"></label>
+                <input asp-for="Uquvchi.Tugulgan_sana" type="date" class="form-control" />
+                <span asp-validation-for="Uquvchi.Tugulgan_sana" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Manzil" class="control-label"></label>
+                <input asp-for="Uquvchi.Manzil" class="form-control" placeholder="Manzil" />
+                <span asp-validation-for="Uquvchi.Manzil" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Parol" class="control-label"></label>
+                <input asp-for="Uquvchi.Parol" class="form-control" placeholder="Parol" />
+                <span asp-validation-for="Uquvchi.Parol" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Tel_raqami" class="control-label"></label>
+                <input asp-for="Uquvchi.Tel_raqami" class="form-control" placeholder="Tel raqam" />
+                <span asp-validation-for="Uquvchi.Tel_raqami" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Jinsi" class="control-label"> </label>
+                @Html.DropDownList("Jinsi", new List<SelectListItem> {
+                new SelectListItem{ Text="Erkak",Value="true"},
+                new SelectListItem{ Text="Ayol",Value="false"}
+                },null, htmlAttributes: new { @class = "form-control border-input" })
+                <span asp-validation-for="Uquvchi.Jinsi" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Rasmi" class="control-label"></label>
+                <input type="file" name="file" class="form-control" />
+                <span asp-validation-for="Uquvchi.Rasmi" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Fakultet" class="control-label"> </label>
+                @Html.DropDownListFor(m =>m.Uquvchi.FakultetId,
+               new SelectList(Model.Fakultet.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+               "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="Uquvchi.Fakultet" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Nomer_Za" class="control-label"></label>
+                <input asp-for="Uquvchi.Nomer_Za" class="form-control" placeholder="Zachotka Nomeri" />
+                <span asp-validation-for="Uquvchi.Nomer_Za" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Oqishga_kirgan_yil" class="control-label"></label>
+                <input asp-for="Uquvchi.Oqishga_kirgan_yil" class="form-control" type="date" />
+                <span asp-validation-for="Uquvchi.Oqishga_kirgan_yil" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Status" class="control-label"></label>
+                <input asp-for="Uquvchi.Status" min="1" max="4" class="form-control" placeholder="Status" />
+                <span asp-validation-for="Uquvchi.Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="Uquvchi.Yonalish" class="control-label"> </label>
+                @Html.DropDownListFor(m =>m.Uquvchi.YonalishId,
+               new SelectList(Model.Yonalish.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+               "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="Uquvchi.Yonalish" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <br />
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

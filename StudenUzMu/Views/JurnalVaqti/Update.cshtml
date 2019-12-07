@@ -1,0 +1,116 @@
+﻿@model StudenUzMu.ViewModel.JurnalVaqtiViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+<h1 class="text-center">Imtixon vaqtini o'zgartirish</h1>
+<hr />
+<div class="container">
+
+    <form asp-controller="JurnalVaqti" method="post" class="form-horizontal" role="form" asp-action="Update">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.HiddenFor(m => Model.JurnalVaqti.Id)
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Fakultet" class="control-label"></label>
+                @Html.DropDownListFor(m =>m.JurnalVaqti.FakultetId,
+                 new SelectList(Model.Fakultets.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+                 "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="JurnalVaqti.Fakultet" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Yonalish" class="control-label"></label>
+                @Html.DropDownListFor(m =>m.JurnalVaqti.YonalishId,
+               new SelectList(Model.Yonalishes.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+               "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="JurnalVaqti.Yonalish" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Fanlar" class="control-label"></label>
+                @Html.DropDownListFor(m =>m.JurnalVaqti.FanlarId,
+                new SelectList(Model.Fanlars.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+                "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="JurnalVaqti.Fanlar" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Uqituvchi" class="control-label"></label>
+                @Html.DropDownListFor(m =>m.JurnalVaqti.UqituvchiId,
+                 new SelectList(Model.Uqituvchis.Select(x=>new {Value=x.Id,Text=x.Familiyasi+" "+x.Ismi}),"Value","Text"),
+                 "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="JurnalVaqti.Uqituvchi" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Joriy_B" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Joriy_B" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Joriy_B" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Joriy_T" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Joriy_T" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Joriy_T" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Oraliq_1_B" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Oraliq_1_B" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Oraliq_1_B" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Oraliq_1_T" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Oraliq_1_T" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Oraliq_1_T" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Oraliq_2_B" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Oraliq_2_B" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Oraliq_2_B" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Oraliq_2_T" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Oraliq_2_T" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Oraliq_2_T" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Yakuniy_B" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Yakuniy_B" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Yakuniy_B" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Yakuniy_T" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Yakuniy_T" type="date" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Yakuniy_T" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Semister" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Semister" min="1" max="8" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Semister" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Kurs" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Kurs" min="1" max="4" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Kurs" class="text-danger"></span>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="JurnalVaqti.Guruh_nomer" class="control-label"></label>
+                <input asp-for="JurnalVaqti.Guruh_nomer" min="100" max="500" class="form-control" />
+                <span asp-validation-for="JurnalVaqti.Guruh_nomer" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

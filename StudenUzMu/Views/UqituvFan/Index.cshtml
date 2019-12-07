@@ -1,0 +1,29 @@
+﻿@model IEnumerable<UqituvFan>
+<h1 class="text-center">O'qituvchilarning Dars o'tadigan Fanlari</h1>
+<hr />
+<a class="btn btn-success mt-5" style="margin:10px;" asp-controller="UqituvFan" asp-action="Create">Yangi UqituvFan qoshish</a>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Uqituvchi FIO</td>
+            <td>Fan Nomi</td>
+            <td>Edit </td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UqituvFan yon in Model)
+        {
+            <tr>
+                <td>@yon.Id</td>
+                <td>@yon.Uqituvchi.Familiyasi @yon.Uqituvchi.Ismi @yon.Uqituvchi.Sharifi</td>
+                <td>@yon.Fanlar.Nomi</td>
+                <td><a class="btn btn-info" asp-area="" asp-controller="UqituvFan" asp-action="Update" asp-route-id="@yon.Id">Edit</a></td>
+                <td><a class="btn btn-danger" asp-area="" asp-controller="UqituvFan" asp-action="Delete" asp-route-id="@yon.Id">Delete</a></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

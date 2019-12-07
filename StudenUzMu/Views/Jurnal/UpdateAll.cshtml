@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Jurnal>
+
+
+@{
+    int i = 0;
+}
+@if (ViewBag.Save)
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> Indicates a successful or positive action.
+    </div>
+}
+<h1 class="text-center">O'quvchilarni Baxolash</h1>
+<hr>
+
+<div class="container">
+    <form asp-controller="Jurnal" asp-action="UpdateAll" method="post">
+        <table style="border:3px solid #000000">
+
+            <tr style="border:3px solid #000000">
+                <td style="border:3px solid #000000">Id</td>
+                <td style="border:3px solid #000000">FIO</td>
+                <td style="border:3px solid #000000">Jory</td>
+                <td style="border:3px solid #000000">Oraliq 1</td>
+                <td style="border:3px solid #000000">Oraliq 2</td>
+                <td style="border:3px solid #000000">Yakuniy</td>
+                <td style="border:3px solid #000000">Jami</td>
+                <td style="border:3px solid #000000">Reting</td>
+                <td style="border:3px solid #000000">Baxo</td>
+                <td style="border:3px solid #000000">Sana</td>
+            </tr>
+            @foreach (Jurnal jurnal in Model)
+            {
+                <tr style="border:3px solid #000000">
+                    <td style="border:3px solid #000000">@jurnal.Id</td>
+                    <td style="border:3px solid #000000">
+                        <input type="number" hidden class="form-control" placeholder="Joriy" name="id[@i]" value="@jurnal.Id" />
+                        @jurnal.Uquvchi.Familiyasi @jurnal.Uquvchi.Ismi
+                    </td>
+                    @if (jurnal.Joriy > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" disabled class="form-control" min="0" max="10" placeholder="@jurnal.Joriy" name="joriy[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="10" placeholder="Joriy" name="joriy[@i]" /></td>
+                    }
+
+                    @if (jurnal.Oraliq_1 > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" disabled class="form-control" min="0" max="30" placeholder="@jurnal.Oraliq_1" name="oraliq1[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="30" placeholder="Oraliq 1" name="oraliq1[@i]" /></td>
+                    }
+                    @if (jurnal.Oraliq_2 > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" disabled class="form-control" min="0" max="30" placeholder="@jurnal.Oraliq_2" name="oraliq2[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="30" placeholder="Oraliq 2" name="oraliq2[@i]" /></td>
+                    }
+                    @if (jurnal.Yakuniy > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" disabled class="form-control" min="0" max="30" placeholder="@jurnal.Yakuniy" name="yakuniy[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="30" placeholder="Yakuniy" name="yakuniy[@i]" /></td>
+                    }
+
+                    <td style="border:3px solid #000000"><input type="number" readonly placeholder="@Convert.ToInt32(@jurnal.Joriy+@jurnal.Oraliq_1+@jurnal.Oraliq_2+@jurnal.Yakuniy)" class="form-control" min="0" max="100" name="jami[@i]" /></td>
+                    @if (jurnal.Reting > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" value="@jurnal.Reting" disabled class="form-control" min="0" max="200" placeholder="Reting" name="reting[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="200" placeholder="Reting" name="reting[@i]" /></td>
+                    }
+                    @if (jurnal.Baxo > 0)
+                    {
+                        <td style="border:3px solid #000000"><input type="number" disabled value="@jurnal.Baxo" class="form-control" min="0" max="5" placeholder="Baxo" name="baxo[@i]" /></td>
+                    }
+                    else
+                    {
+                        <td style="border:3px solid #000000"><input type="number" class="form-control" min="0" max="5" placeholder="Baxo" name="baxo[@i]" /></td>
+                    }
+                    <td style="border:3px solid #000000"><input type="date" class="form-control" name="sana[@i]" /></td>
+                </tr>
+                i++;
+            }
+            <tr style="border:3px solid #000000">
+                <td style="border:3px solid #000000"><input type="submit" class="btn btn-success" value="Baxolash" /></td>
+            </tr>
+        </table>
+    </form>
+</div>

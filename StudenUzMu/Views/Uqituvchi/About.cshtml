@@ -1,0 +1,23 @@
+﻿@model StudenUzMu.Models.Uqituvchi
+
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container" >
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Html.DisplayFor(model => model.Rasm)" style="width:80%">
+        </div>
+        <div class="col-md-4" style="font-size:20px">
+            <p><b>Familiyasi: </b><span>@Html.DisplayFor(model => model.Familiyasi) </span></p>
+            <p><b>Ismi: </b><span>@Html.DisplayFor(model => model.Ismi) </span></p>
+            <p><b>Sharifi: </b><span>@Html.DisplayFor(model => model.Sharifi) </span></p>
+            <p><b>Pasport: </b><span>@Html.DisplayFor(model => model.Pasport) </span></p>
+            <p><b>Email: </b><span>@Html.DisplayFor(model => model.Email) </span></p>
+            <p><b>Parol: </b><span>@Html.DisplayFor(model => model.Parol) </span></p>
+    </div>
+
+</div>
+    </div>

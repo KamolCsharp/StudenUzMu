@@ -1,0 +1,63 @@
+﻿@model StudenUzMu.ViewModel.JurnalViewModel
+<h3>Malumotlarni o'zgartirish</h3>
+<hr />
+<div class="row ">
+    <form asp-controller="Jurnal" method="post" class="form-horizontal" role="form" asp-action="Update">
+        @Html.HiddenFor(m => Model.Jurnal.Id)
+        <div class="form-group">
+            <label asp-for="Jurnal.Uquvchi.Fakultet" class="control-label"> </label>
+            @Html.DropDownListFor(m =>m.Jurnal.Uquvchi.FakultetId,
+           new SelectList(Model.Fakultets.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+           "",htmlAttributes:new {@class="form-control border-input" })
+            <span asp-validation-for="Jurnal.Uquvchi.Fakultet" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Uquvchi.Yonalish" class="control-label"> </label>
+            @Html.DropDownListFor(m =>m.Jurnal.Uquvchi.YonalishId,
+           new SelectList(Model.Yonalishes.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+           "",htmlAttributes:new {@class="form-control border-input" })
+            <span asp-validation-for="Jurnal.Uquvchi.Yonalish" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Uqituvchi" class="control-label"> </label>
+            @Html.DropDownListFor(m =>m.Jurnal.UqituvchiId,
+           new SelectList(Model.Uqituvchis.Select(x=>new {Value=x.Id,Text=x.Familiyasi+" "+x.Ismi}),"Value","Text"),
+           "",htmlAttributes:new {@class="form-control border-input" })
+            <span asp-validation-for="Jurnal.Uqituvchi" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Uquvchi" class="control-label"> </label>
+            @Html.DropDownListFor(m =>m.Jurnal.UquvchiId,
+           new SelectList(Model.Uquvchis.Select(x=>new {Value=x.UquvchiId,Text=x.Familiyasi+" "+x.Ismi+" "+x.Sharifi}),"Value","Text"),
+           "",htmlAttributes:new {@class="form-control border-input" })
+            <span asp-validation-for="Jurnal.Uquvchi" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Fanlar" class="control-label"> </label>
+            @Html.DropDownListFor(m =>m.Jurnal.FanlarId,
+           new SelectList(Model.Fanlars.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+           "",htmlAttributes:new {@class="form-control border-input" })
+            <span asp-validation-for="Jurnal.Fanlar" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Jurnal.Semister" class="control-label"> </label>
+            <input asp-for="Jurnal.Semister" class="form-control" placeholder="Semister kiriting" />
+            <span asp-validation-for="Jurnal.Semister" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Guruh_nomeri" class="control-label"> </label>
+            <input asp-for="Jurnal.Guruh_nomeri" class="form-control" placeholder="Guruh nomeri kiriting" />
+            <span asp-validation-for="Jurnal.Guruh_nomeri" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Jurnal.Kursi" class="control-label"> </label>
+            <input asp-for="Jurnal.Kursi" class="form-control" placeholder="Kursini kiriting" />
+            <span asp-validation-for="Jurnal.Kursi" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Update" />
+        </div>
+    </form>
+</div>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<JurnalVaqti>
+<h1 class="text-center">Imtixon Vaqtlari</h1>
+
+<a class="btn btn-success mt-5" style="margin:10px;" asp-controller="JurnalVaqti" asp-action="Create">Yangi Malumot Qoshish</a>
+<a class="btn btn-secondary mt-5" style="margin:10px;" data-toggle="collapse" data-target="#demo2">Malumot qidirish</a>
+<form asp-controller="JurnalVaqti" asp-action="Index">
+    <table id="demo2" class="collapse table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>Fanlar</td>
+                <td>Semester</td>
+                <td>Fakultet</td>
+                <td>Kursi</td>
+                <td>Guruh nomeri</td>
+                <td>Yonalish</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DropDownList("fanid",
+                   new SelectList(ViewBag.Fan,"Id","Nomi",null),"  ",new { @class="form-control"})
+                </td>
+                <td><input min="0" max="8" type="number" class="form-control" name="sem" placeholder="Semester" /></td>
+                <td>
+                    @Html.DropDownList("fakid",
+                  new SelectList(ViewBag.Fak,"Id","Nomi",null),"  ",new { @class="form-control"})
+                </td>
+                <td><input min="0" max="4" type="number" name="kurs" class="form-control" placeholder="Kursi" /></td>
+                <td><input min="0" type="number" class="form-control" name="gn" placeholder="Guruh nomeri" /></td>
+                <td>
+                    @Html.DropDownList("yonid",
+                  new SelectList(ViewBag.Yon,"Id","Nomi",null),"   ",new { @class="form-control"})
+                </td>
+            </tr>
+            <tr><td><input type="submit" class="btn btn-secondary" value="Qidirish" /></td></tr>
+        </tbody>
+    </table>
+
+</form>
+<div class="table-responsive">
+
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Uqituvchi</td>
+                <td>Fan</td>
+                <td colspan="2">Joriy_Boshlanish_va_tugash_Vaqti</td>
+                <td colspan="2">Oraliq_1_Boshlanish_va_tugash_Vaqti</td>
+                <td colspan="2">Oraliq_2_Boshlanish_va_tugash_Vaqti</td>
+                <td colspan="2">Yakuniy_Boshlanish_va_tugash_Vaqti</td>
+                <td>Sem</td>
+                <td>Kurs</td>
+                <td>G_N</td>
+                <td>Fakultet</td>
+                <td>Yonalish</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jurnalVaqti in Model)
+            {
+                <tr>
+
+                    <td><b>@jurnalVaqti.Id</b></td>
+                    <td><b>@jurnalVaqti.Uqituvchi.Familiyasi @jurnalVaqti.Uqituvchi.Ismi</b></td>
+                    <td><b>@jurnalVaqti.Fanlar.Nomi</b></td>
+                    <td><b>@jurnalVaqti.Joriy_B.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Joriy_T.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Oraliq_1_B.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Oraliq_1_T.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Oraliq_2_B.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Oraliq_2_T.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Yakuniy_B.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Yakuniy_T.ToString("dd-MM-yyyy")</b></td>
+                    <td><b>@jurnalVaqti.Semister</b></td>
+                    <td><b>@jurnalVaqti.Kurs</b></td>
+                    <td><b>@jurnalVaqti.Guruh_nomer</b></td>
+                    <td><b>@jurnalVaqti.Fakultet.Nomi</b></td>
+                    <td><b>@jurnalVaqti.Yonalish.Nomi</b></td>
+                    <td><a class="btn btn-info" asp-area="" asp-controller="JurnalVaqti" asp-action="Update" asp-route-id="@jurnalVaqti.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-area="" asp-controller="JurnalVaqti" asp-action="Delete" asp-route-id="@jurnalVaqti.Id">Delete</a></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

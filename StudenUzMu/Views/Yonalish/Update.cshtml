@@ -1,0 +1,32 @@
+﻿@model StudenUzMu.ViewModel.YonalishViewModel
+
+<h1 class="text-center">Yonalishni o'zgartirish</h1>
+<hr />
+<div class="container">
+    <div class="row ">
+        <form asp-controller="Yonalish" method="post" class="form-horizontal" role="form" asp-action="Update">
+            @Html.HiddenFor(m => Model.Yonalish.Id)
+
+            <div class="form-group">
+
+                <label asp-for="Yonalish.Nomi" class="control-label"> </label>
+                <input asp-for="Yonalish.Nomi" class="form-control" placeholder="Yonalish nomni kiriting" />
+                <span asp-validation-for="Yonalish.Nomi" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Yonalish.Fakultet" class="control-label"> </label>
+                @Html.DropDownListFor(m =>m.Yonalish.FakultetId,
+               new SelectList(Model.Fakultet.Select(x=>new {Value=x.Id,Text=x.Nomi}),"Value","Text"),
+               "",htmlAttributes:new {@class="form-control border-input" })
+                <span asp-validation-for="Yonalish.Fakultet" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Update" />
+            </div>
+        </form>
+    </div>
+
+</div>

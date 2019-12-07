@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="PagedList" Version="1.17.0" />
+    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="..\..\..\..\..\Eshpo%2527latov Kamol\source\repos\StudenUzMu\StudenUzMu\wwwroot\Rasm\UqituvchiRasm\" />
+    <Folder Include="wwwroot\Rasm\UqituvchiRasm\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\Eshpo%2527latov Kamol\source\repos\StudenUzMu\StudenUzMu\wwwroot\Rasm\UquvchiRasm\223024102_1069392.jpg" />
+    <None Include="..\..\..\..\..\Eshpo%2527latov Kamol\source\repos\StudenUzMu\StudenUzMu\wwwroot\Rasm\UquvchiRasm\img_avatar1.png" />
+  </ItemGroup>
+
+</Project>

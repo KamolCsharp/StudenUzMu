@@ -1,0 +1,123 @@
+﻿@using PagedList
+@model IPagedList<Jurnal>
+<h1 class="text-center"> O'quvchilarning Fanlardan olgan baxolari</h1>
+
+<hr />
+<a class="btn btn-success" style="margin:10px;" asp-controller="Jurnal" asp-action="Create">Yangi Jurnal qoshish</a>
+<button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#demo">Qidirish</button>
+<form asp-controller="Jurnal" asp-action="Search" method="get">
+    <table id="demo" class="collapse table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>Familiya</td>
+                <td>Ismi</td>
+                <td>Sharifi</td>
+                <td>Sem</td>
+                <td>Fanlar</td>
+                <td>Baxo</td>
+                <td>G_N</td>
+                <td>Kurs</td>
+                <td>Fakultet</td>
+                <td>Yonalish</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="form-control" placeholder="Familiyasi" name="fam" /></td>
+                <td><input type="text" class="form-control" placeholder="Ismi" name="ism" /></td>
+                <td><input type="text" class="form-control" placeholder="Sharfi" name="sharf" /></td>
+                <td><input type="number" min="1" max="8" class="form-control" placeholder="Semister" name="sem" /></td>
+                <td>
+                    @Html.DropDownList("fanid",
+                   new SelectList(ViewBag.Fan, "Id", "Nomi",null),"  ",new { @class="form-control"})
+                </td>
+                <td><input type="number" min="1" max="5" class="form-control" placeholder="Baxo" name="baxo" /></td>
+
+                <td><input type="number" min="100" max="500" class="form-control" placeholder="Guruh nomeri" name="g_num" /></td>
+                <td><input type="number" min="1" max="4" class="form-control" placeholder="Kurs" name="kurs" /></td>
+                <td>
+                    @Html.DropDownList("fakid",
+                  new SelectList(ViewBag.Fak,"Id","Nomi",null),"  ",new { @class="form-control"})
+                </td>
+                <td>
+                    @Html.DropDownList("yonid",
+                  new SelectList(ViewBag.Yon,"Id","Nomi",null),"   ",new { @class="form-control"})
+                </td>
+
+            </tr>
+            <tr><td><input type="submit" class="btn btn-secondary" value="Qidirish" /></td></tr>
+        </tbody>
+    </table>
+</form>
+<div class="table-responsive">
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Uquvchi FIO</td>
+                <td>Sem</td>
+                <td>Fanlar </td>
+                <td>Joriy</td>
+                <td>Oraliq 1</td>
+                <td>Oraliq 2</td>
+                <td>Yakuniy</td>
+                <td>Jami</td>
+                <td>Reting</td>
+                <td>Baxo</td>
+                <td>Sana</td>
+                <td>Uqituvchi FIO</td>
+                <td>G_N</td>
+                <td>Kursi</td>
+                <td>Fakultet</td>
+                <td>Yonalish</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Jurnal jurnal in Model)
+            {
+                <tr>
+                    <td>@jurnal.Id</td>
+                    <td>@jurnal.Uquvchi.Familiyasi @jurnal.Uquvchi.Ismi @jurnal.Uquvchi.Sharifi  </td>
+                    <td>@jurnal.Semister</td>
+                    <td>@jurnal.Fanlar.Nomi</td>
+                    <td>@jurnal.Joriy</td>
+                    <td>@jurnal.Oraliq_1</td>
+                    <td>@jurnal.Oraliq_2</td>
+                    <td>@jurnal.Yakuniy</td>
+                    <td>@jurnal.Jami</td>
+                    <td>@jurnal.Reting</td>
+                    <td>@jurnal.Baxo</td>
+                    <td>@jurnal.Sana.ToString("dd-MM-yyyy")</td>
+                    <td>@jurnal.Uqituvchi.Familiyasi @jurnal.Uqituvchi.Ismi</td>
+                    <td>@jurnal.Guruh_nomeri</td>
+                    <td>@jurnal.Kursi</td>
+                    <td>@jurnal.Uquvchi.Fakultet.Nomi</td>
+                    <td>@jurnal.Uquvchi.Yonalish.Nomi</td>
+                    <td><a class="btn btn-info" asp-area="" asp-controller="Jurnal" asp-action="Update" asp-route-id="@jurnal.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-area="" asp-controller="Jurnal" asp-action="Delete" asp-route-id="@jurnal.Id">Delete</a></td>
+
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        @{
+            var totalPage = ViewBag.count % 15 == 0 ? ViewBag.count / 15 : ViewBag.count / 15 + 1;
+        }
+        @for (int i = 1; i <= totalPage; i++)
+        {
+            <li><a asp-controller="Jurnal" asp-action="Index" asp-route-page="@i">@i</a></li>
+        }
+        <li>
+            <a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+    </ul>
